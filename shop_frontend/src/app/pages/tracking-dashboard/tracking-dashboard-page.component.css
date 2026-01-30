@@ -1,0 +1,78 @@
+.page {
+  display: grid;
+  gap: 14px;
+}
+
+.muted {
+  color: var(--retro-muted);
+  margin-top: 8px;
+}
+
+.controls .field {
+  display: grid;
+  gap: 6px;
+}
+
+.controls .field span {
+  font-size: 12px;
+  color: var(--retro-muted);
+}
+
+.controls .row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+@media (max-width: 520px) {
+  .controls .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.state {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.dot.on {
+  border-color: rgba(37, 244, 255, 0.7);
+  background: rgba(37, 244, 255, 0.45);
+  box-shadow: 0 0 20px rgba(37, 244, 255, 0.35);
+}
+
+.events {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.evt .top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.status {
+  font-family: var(--retro-font-display);
+  letter-spacing: 0.06em;
+  color: rgba(37, 244, 255, 0.95);
+}
+
+.msg {
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.meta {
+  margin-top: 10px;
+  font-size: 12px;
+}

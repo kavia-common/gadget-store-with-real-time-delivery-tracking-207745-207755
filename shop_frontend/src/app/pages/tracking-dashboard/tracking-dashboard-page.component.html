@@ -1,0 +1,47 @@
+<section class="page">
+  <div class="retro-card">
+    <h1 class="retro-title">Delivery Tracking</h1>
+    <p class="muted">
+      Connects to realtime WebSocket stream and shows live delivery events.
+      <span *ngIf="orderId">Order: <strong>#{{ orderId }}</strong></span>
+    </p>
+  </div>
+
+  <div class="retro-card controls">
+    <label class="field">
+      <span>Tracking ID</span>
+      <div class="row">
+        <input class="retro-input" [(ngModel)]="trackingId" name="trackingId" placeholder="e.g., TRK-123456" />
+        <button class="retro-btn primary" (click)="apply()">Track</button>
+      </div>
+    </label>
+
+    <div class="state">
+      <span class="dot" [class.on]="(realtime.state$ | async) === 'CONNECTED'"></span>
+      <span class="muted">WebSocket: {{ realtime.state$ | async }}</span>
+    </div>
+  </div>
+
+  <div class="retro-card" *ngIf="!trackingId">
+    <p class="muted">Enter a tracking ID. Tip: after checkout, click “Open tracking dashboard”.</p>
+  </div>
+
+  <div class="retro-card" *ngIf="trackingId && filtered.length === 0">
+    <p class="muted">No events yet. Waiting for the courier to power up their walkie‑talkie…</p>
+  </div>
+
+  <div class="retro-grid events" *ngIf="trackingId && filtered.length > 0">
+    <article class="retro-card evt" *ngFor="let e of filtered">
+      <div class="top">
+        <div class="status">{{ e.status }}</div>
+        <div class="time muted">{{ e.timestamp | date:'medium' }}</div>
+      </div>
+      <div class="msg">{{ e.message }}</div>
+      <div class="meta muted">
+        <span>Tracking: {{ e.trackingId }}</span>
+        <span *ngIf="e.eta">• ETA: {{ e.eta }}</span>
+        <span *ngIf="e.lat != null && e.lng != null">• GPS: {{ e.lat }}, {{ e.lng }}</span>
+      </div>
+    </article>
+  </div>
+</section>

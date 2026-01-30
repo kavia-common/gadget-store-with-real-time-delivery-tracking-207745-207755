@@ -1,0 +1,37 @@
+<section class="page">
+  <div class="retro-card">
+    <h1 class="retro-title">Cart</h1>
+    <p class="muted">Your selected gadgets are queued for checkout.</p>
+  </div>
+
+  <div class="retro-card" *ngIf="(cart.items$ | async) as items">
+    <div *ngIf="items.length === 0" class="empty">
+      <p class="muted">Cart is empty. Time to shop like it’s 1999.</p>
+      <a class="retro-btn primary" routerLink="/catalog">Browse catalog</a>
+    </div>
+
+    <div *ngIf="items.length > 0" class="items">
+      <div class="item" *ngFor="let it of items">
+        <div class="name">{{ it.product.name }}</div>
+        <div class="qty">
+          <button class="retro-btn" (click)="dec(it.product.id)" aria-label="Decrease quantity">−</button>
+          <span class="q">{{ it.quantity }}</span>
+          <button class="retro-btn" (click)="inc(it.product.id)" aria-label="Increase quantity">+</button>
+        </div>
+        <div class="price">{{ formatMoney(it.product.priceCents * it.quantity) }}</div>
+        <button class="retro-btn danger" (click)="cart.remove(it.product.id)">Remove</button>
+      </div>
+
+      <div class="summary">
+        <div class="total">
+          <span>Total</span>
+          <strong>{{ formatMoney(cart.totalCents) }}</strong>
+        </div>
+        <div class="actions">
+          <button class="retro-btn" (click)="cart.clear()">Clear</button>
+          <a class="retro-btn primary" routerLink="/checkout">Proceed to checkout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

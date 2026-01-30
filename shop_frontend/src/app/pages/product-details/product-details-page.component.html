@@ -1,0 +1,32 @@
+<section class="page">
+  <div class="retro-card" *ngIf="loading">Loading product…</div>
+
+  <div class="retro-card" *ngIf="!loading && !product">
+    <h1 class="retro-title">Signal Lost</h1>
+    <p class="muted">This product can’t be found.</p>
+    <div class="actions">
+      <a class="retro-btn" routerLink="/catalog">Back to catalog</a>
+    </div>
+  </div>
+
+  <div class="retro-card details" *ngIf="!loading && product">
+    <div class="top">
+      <div>
+        <div class="badge">{{ product.category ?? 'Gadget' }}</div>
+        <h1 class="retro-title title">{{ product.name }}</h1>
+        <p class="muted desc">{{ product.description }}</p>
+      </div>
+
+      <div class="priceBox">
+        <div class="price">{{ formatMoney(product.priceCents) }}</div>
+        <div class="rating" *ngIf="product.rating">★ {{ product.rating.toFixed(1) }}</div>
+        <button class="retro-btn primary" (click)="addToCart()">Add to cart</button>
+        <a class="retro-btn" routerLink="/cart">Go to cart</a>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="hint">Pro tip: checkout to see the realtime delivery dashboard in action.</div>
+    </div>
+  </div>
+</section>

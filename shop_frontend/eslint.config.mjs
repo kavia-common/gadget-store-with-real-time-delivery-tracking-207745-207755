@@ -27,6 +27,8 @@ export default [
         expect: "readonly",
         // Browser globals
         HTMLElement: "readonly",
+        localStorage: "readonly",
+        WebSocket: "readonly",
         // Node.js globals
         process: "readonly",
         console: "readonly"

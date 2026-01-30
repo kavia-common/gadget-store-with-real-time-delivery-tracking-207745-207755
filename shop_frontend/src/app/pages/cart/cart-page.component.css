@@ -1,0 +1,80 @@
+.page {
+  display: grid;
+  gap: 14px;
+}
+
+.muted {
+  color: var(--retro-muted);
+  margin-top: 8px;
+}
+
+.empty {
+  display: grid;
+  gap: 12px;
+}
+
+.items {
+  display: grid;
+  gap: 12px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 2px dashed rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+}
+
+@media (max-width: 820px) {
+  .item {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}
+
+.name {
+  font-weight: 800;
+}
+
+.qty {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.q {
+  min-width: 26px;
+  text-align: center;
+  font-family: var(--retro-font-display);
+}
+
+.price {
+  font-family: var(--retro-font-display);
+  letter-spacing: 0.06em;
+}
+
+.retro-btn.danger {
+  border-color: rgba(239, 68, 68, 0.55);
+}
+
+.summary {
+  margin-top: 10px;
+  display: grid;
+  gap: 12px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 16px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}

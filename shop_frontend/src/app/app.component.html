@@ -1,3 +1,33 @@
-<div class="container">
-  <h1>{{ title }}</h1>
-</div>
+<header class="retro-header">
+  <div class="brand">
+    <a routerLink="/catalog" class="brand-link" aria-label="Retro Gadget Store home">
+      <span class="brand-mark">RG</span>
+      <span class="brand-name">Retro Gadget Store</span>
+    </a>
+    <div class="tagline">Gadgets • Accessories • Real‑time delivery vibes</div>
+  </div>
+
+  <nav class="nav" aria-label="Primary">
+    <a routerLink="/catalog" routerLinkActive="active" class="nav-link">Catalog</a>
+    <a routerLink="/orders" routerLinkActive="active" class="nav-link">Orders</a>
+    <a routerLink="/tracking" routerLinkActive="active" class="nav-link">Tracking</a>
+    <a routerLink="/cart" routerLinkActive="active" class="nav-link nav-cart">
+      Cart
+      <span class="pill" *ngIf="(cart.items$ | async) as items">
+        {{ items.length }} • {{ formatMoney(cart.totalCents) }}
+      </span>
+    </a>
+  </nav>
+</header>
+
+<main class="retro-main">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="retro-footer">
+  <div class="footer-inner">
+    <span>© {{ currentYear }} Retro Gadget Store</span>
+    <span class="sep">•</span>
+    <span class="muted">Powered by neon CSS and optimistic shipping estimates</span>
+  </div>
+</footer>

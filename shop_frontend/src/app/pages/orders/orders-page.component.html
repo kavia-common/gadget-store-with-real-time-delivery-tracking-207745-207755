@@ -1,0 +1,43 @@
+<section class="page">
+  <div class="retro-card">
+    <h1 class="retro-title">Orders</h1>
+    <p class="muted">Order history and tracking shortcuts.</p>
+  </div>
+
+  <div class="retro-card" *ngIf="loading">Loading orders…</div>
+  <div class="retro-card" *ngIf="!loading && error">{{ error }}</div>
+
+  <div class="retro-card" *ngIf="!loading && !error && orders.length === 0">
+    <p class="muted">No orders found (backend may not support orders yet).</p>
+    <a class="retro-btn primary" routerLink="/catalog">Shop the catalog</a>
+  </div>
+
+  <div class="retro-grid list" *ngIf="!loading && !error && orders.length > 0">
+    <article class="retro-card order" *ngFor="let o of orders">
+      <div class="top">
+        <div>
+          <div class="id">#{{ o.id }}</div>
+          <div class="muted">{{ o.createdAt }}</div>
+        </div>
+        <div class="status">{{ o.status }}</div>
+      </div>
+
+      <div class="mid">
+        <div class="muted">Items: {{ o.items.length }}</div>
+        <div class="price">{{ formatMoney(o.totalCents) }}</div>
+      </div>
+
+      <div class="actions">
+        <a
+          class="retro-btn primary"
+          [routerLink]="['/tracking']"
+          [queryParams]="{ trackingId: o.trackingId, orderId: o.id }"
+          [class.disabled]="!o.trackingId"
+          [attr.aria-disabled]="!o.trackingId"
+        >
+          Track delivery
+        </a>
+      </div>
+    </article>
+  </div>
+</section>

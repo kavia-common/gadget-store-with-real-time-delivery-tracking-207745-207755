@@ -1,0 +1,98 @@
+<section class="page">
+  <div class="retro-card">
+    <h1 class="retro-title">Checkout</h1>
+    <p class="muted">Confirm shipping details and send your order down the neon pipeline.</p>
+  </div>
+
+  <div class="retro-card" *ngIf="placedOrder">
+    <h2 class="retro-title">Order Placed</h2>
+    <p class="muted">
+      Order <strong>#{{ placedOrder.id }}</strong> created. Tracking ID:
+      <strong>{{ placedOrder.trackingId || '—' }}</strong>
+    </p>
+
+    <div class="actions">
+      <a class="retro-btn" routerLink="/catalog">Back to catalog</a>
+      <a class="retro-btn" routerLink="/orders">View orders</a>
+      <button class="retro-btn primary" (click)="goToTracking()" [disabled]="!placedOrder.trackingId">Open tracking dashboard</button>
+    </div>
+  </div>
+
+  <div class="retro-card" *ngIf="!placedOrder">
+    <div class="grid">
+      <div class="col">
+        <h2 class="retro-title small">Shipping</h2>
+
+        <label class="field">
+          <span>Full name</span>
+          <input class="retro-input" [(ngModel)]="address.fullName" name="fullName" />
+        </label>
+
+        <label class="field">
+          <span>Email</span>
+          <input class="retro-input" [(ngModel)]="address.email" name="email" type="email" />
+        </label>
+
+        <label class="field">
+          <span>Phone (optional)</span>
+          <input class="retro-input" [(ngModel)]="address.phone" name="phone" />
+        </label>
+
+        <label class="field">
+          <span>Address line 1</span>
+          <input class="retro-input" [(ngModel)]="address.line1" name="line1" />
+        </label>
+
+        <label class="field">
+          <span>Address line 2 (optional)</span>
+          <input class="retro-input" [(ngModel)]="address.line2" name="line2" />
+        </label>
+
+        <div class="row">
+          <label class="field">
+            <span>City</span>
+            <input class="retro-input" [(ngModel)]="address.city" name="city" />
+          </label>
+          <label class="field">
+            <span>State (optional)</span>
+            <input class="retro-input" [(ngModel)]="address.state" name="state" />
+          </label>
+        </div>
+
+        <div class="row">
+          <label class="field">
+            <span>Postal code</span>
+            <input class="retro-input" [(ngModel)]="address.postalCode" name="postalCode" />
+          </label>
+          <label class="field">
+            <span>Country</span>
+            <select class="retro-select" [(ngModel)]="address.country" name="country">
+              <option value="US">US</option>
+              <option value="CA">CA</option>
+              <option value="GB">GB</option>
+              <option value="AU">AU</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="col summary">
+        <h2 class="retro-title small">Summary</h2>
+        <p class="muted">Items: {{ cart.itemsSnapshot.length }}</p>
+        <p class="total">Total: <strong>{{ formatMoney(cart.totalCents) }}</strong></p>
+
+        <div class="warn" *ngIf="cart.itemsSnapshot.length === 0">
+          Cart is empty. Add products from the catalog first.
+        </div>
+
+        <div class="err" *ngIf="error">{{ error }}</div>
+
+        <button class="retro-btn primary" (click)="placeOrder()" [disabled]="!canSubmit || placing">
+          {{ placing ? 'Placing…' : 'Place order' }}
+        </button>
+
+        <a class="retro-btn" routerLink="/cart">Back to cart</a>
+      </div>
+    </div>
+  </div>
+</section>

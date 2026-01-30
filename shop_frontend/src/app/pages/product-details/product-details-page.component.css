@@ -1,0 +1,72 @@
+.page {
+  display: grid;
+  gap: 14px;
+}
+
+.details .top {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1.4fr 0.6fr;
+}
+
+@media (max-width: 820px) {
+  .details .top {
+    grid-template-columns: 1fr;
+  }
+}
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 73, 244, 0.35);
+  color: rgba(255, 73, 244, 0.95);
+  background: rgba(255, 73, 244, 0.06);
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 22px;
+}
+
+.desc {
+  margin-top: 10px;
+  line-height: 1.55;
+}
+
+.priceBox {
+  border: 2px dashed rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.price {
+  font-family: var(--retro-font-display);
+  letter-spacing: 0.06em;
+  font-size: 20px;
+}
+
+.rating {
+  color: rgba(255, 253, 135, 0.95);
+}
+
+.muted {
+  color: var(--retro-muted);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.hint {
+  margin-top: 14px;
+  color: rgba(37, 244, 255, 0.92);
+  font-family: var(--retro-font-display);
+  letter-spacing: 0.04em;
+}
