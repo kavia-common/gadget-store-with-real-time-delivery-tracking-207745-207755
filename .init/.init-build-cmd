@@ -1,0 +1,4 @@
+{
+    "command": "npm install --legacy-peer-deps && npm run build",
+    "working_directory": "/home/kavia/workspace/code-generation/gadget-store-with-real-time-delivery-tracking-207745-207755/shop_frontend"
+}
